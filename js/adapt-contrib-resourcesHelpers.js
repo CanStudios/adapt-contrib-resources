@@ -1,16 +1,16 @@
 define(function(require) {
 
-	var Handlebars = require('handlebars');
+  var Handlebars = require('handlebars');
 
-	Handlebars.registerHelper('if_collection_contains', function(collection, attribute, value, block) {
-		var makeBlockVisible = false;
+  Handlebars.registerHelper('if_collection_contains', function(collection, attribute, value, block) {
+    var makeBlockVisible = false;
 
-		_.each(collection, function(resource) {
-			if (resource[attribute] === value) {
-				makeBlockVisible = true;
-			}
-		});
-		if(makeBlockVisible) {
+    _.each(collection, function(resource) {
+      if (resource[attribute] === value) {
+        makeBlockVisible = true;
+      }
+    });
+    if(makeBlockVisible) {
             return block.fn(this);
         } else {
             return block.inverse();
@@ -18,36 +18,35 @@ define(function(require) {
     });
 
     Handlebars.registerHelper('if_collection_contains_only_one_item', function(collection, attribute, block) {
-		var attributeCount = [];
+    var attributeCount = [];
 
-		_.each(collection, function(resource) {
-			var resourceAttribute = resource[attribute];
-			if (_.indexOf(attributeCount, resourceAttribute) === -1) {
-				attributeCount.push(resourceAttribute);
-			}
-		});
+    _.each(collection, function(resource) {
+      var resourceAttribute = resource[attribute];
+      if (_.indexOf(attributeCount, resourceAttribute) === -1) {
+        attributeCount.push(resourceAttribute);
+      }
+    });
 
-		if (attributeCount.length <= 1) {
-			return block.fn(this);
-		} else {
-			return block.inverse(this);
-		}
+    if (attributeCount.length <= 1) {
+      return block.fn(this);
+    } else {
+      return block.inverse(this);
+    }
 
     });
 
     Handlebars.registerHelper('return_column_layout_from_collection_length', function(collection, attribute) {
-		var attributeCount = [];
+    var attributeCount = [];
 
-		_.each(collection, function(resource) {
-			var resourceAttribute = resource[attribute];
-			if (_.indexOf(attributeCount, resourceAttribute) === -1) {
-				attributeCount.push(resourceAttribute);
-			}
-		});
+    _.each(collection, function(resource) {
+      var resourceAttribute = resource[attribute];
+      if (_.indexOf(attributeCount, resourceAttribute) === -1) {
+        attributeCount.push(resourceAttribute);
+      }
+    });
 
-		return (attributeCount.length + 1);
+    return (attributeCount.length + 1);
 
     });
 
 })
-	
