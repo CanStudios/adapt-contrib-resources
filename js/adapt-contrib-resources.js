@@ -29,7 +29,7 @@ define([
     var drawerObject = {
       title: courseResources.title,
       description: courseResources.description,
-      className: 'resources-drawer',
+      className: 'resources__drawer',
       drawerOrder: courseResources._drawerOrder || 0
     };
 

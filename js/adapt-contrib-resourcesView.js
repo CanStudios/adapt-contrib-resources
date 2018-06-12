@@ -12,8 +12,8 @@ define([
     },
 
     events: {
-      'click .resources-filter button': 'onFilterClicked',
-      'click .resources-item-container button': 'onResourceClicked'
+      'click .resources__filter button': 'onFilterClicked',
+      'click .resources__item-container button': 'onResourceClicked'
     },
 
     render: function() {
@@ -32,15 +32,15 @@ define([
     onFilterClicked: function(event) {
       event.preventDefault();
       var $currentTarget = $(event.currentTarget);
-      this.$('.resources-filter button').removeClass('selected');
-      var filter = $currentTarget.addClass('selected').attr('data-filter');
+      this.$('.resources__filter button').removeClass('--selected');
+      var filter = $currentTarget.addClass('--selected').attr('data-filter');
       var items = [];
 
       if (filter === 'all') {
-        items = this.$('.resources-item').removeClass('display-none');
+        items = this.$('.resources__item').removeClass('u-display-none');
       } else {
-        this.$('.resources-item').removeClass('display-none').not("." + filter).addClass('display-none');
-        items = this.$('.resources-item.' + filter);
+        this.$('.resources__item').removeClass('u-display-none').not("." + filter).addClass('u-display-none');
+        items = this.$('.resources__item.' + filter);
       }
 
       if (items.length === 0) return;
