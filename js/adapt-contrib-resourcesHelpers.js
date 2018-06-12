@@ -10,14 +10,16 @@ define(function(require) {
         makeBlockVisible = true;
       }
     });
-    if(makeBlockVisible) {
-            return block.fn(this);
-        } else {
-            return block.inverse();
-        }
-    });
 
-    Handlebars.registerHelper('if_collection_contains_only_one_item', function(collection, attribute, block) {
+    if(makeBlockVisible) {
+      return block.fn(this);
+    } else {
+      return block.inverse();
+    }
+
+  });
+
+  Handlebars.registerHelper('if_collection_contains_only_one_item', function(collection, attribute, block) {
     var attributeCount = [];
 
     _.each(collection, function(resource) {
@@ -33,9 +35,9 @@ define(function(require) {
       return block.inverse(this);
     }
 
-    });
+  });
 
-    Handlebars.registerHelper('return_column_layout_from_collection_length', function(collection, attribute) {
+  Handlebars.registerHelper('return_column_layout_from_collection_length', function(collection, attribute) {
     var attributeCount = [];
 
     _.each(collection, function(resource) {
@@ -47,6 +49,6 @@ define(function(require) {
 
     return (attributeCount.length + 1);
 
-    });
+  });
 
 })
